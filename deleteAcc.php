@@ -5,13 +5,17 @@
     $accounts = json_decode(file_get_contents($accountFile),true);
   }
 
+// Array search? 
+
 $userID = $_POST['userID'];
-
-unset($accounts['users'][$userID]);
-$accToString = json_encode($accounts);
-file_put_contents($accountFile, $accToString);
-
-header("Location: ./index.php");
-exit;
-
+if ($accounts['users'][$userID]['accbalance'] > 0) {
+  header("Location: index.php?delete=" . urlencode('fail'));
+  exit;
+} else {
+  unset($accounts['users'][$userID]);
+  $accToString = json_encode($accounts);
+  file_put_contents($accountFile, $accToString);
+  header("Location: index.php?delete=" . urlencode('success'));
+  exit;
+}
 ?>
