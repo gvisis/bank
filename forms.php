@@ -1,27 +1,30 @@
-<?php 
+<?php
 require_once './accFile.php';
-  
-  $userFirstName = $accUsers[$_GET['userID']]['firstname'];
-  $userLastName = $accUsers[$_GET['userID']]['lastname'];
-  $accBalance = $accUsers[$_GET['userID']]['accbalance'];
-
+  if(isset($_GET['userID'])) {
+      $userFirstName = $accUsers[$_GET['userID']]['firstname'];
+      $userLastName = $accUsers[$_GET['userID']]['lastname'];
+      $accBalance = $accUsers[$_GET['userID']]['accbalance'];
+  } else {
+    header('Location: ./index.php');
+    exit;
+  };
 ?>
 
 <h1>Sveiki, <?= $userFirstName . ' ' . $userLastName ?>!</h1>
 <form>
   <div class="form-group">
-    <label for="formGroupExampleInput">First name</label>
+    <label>First name</label>
     <input type="text" readonly class="form-control" placeholder="<?= $userFirstName ?>">
   </div>
   <div class="form-group">
-    <label for="formGroupExampleInput">Last name</label>
+    <label>Last name</label>
     <input type="text" readonly class="form-control" placeholder="<?= $userLastName ?>">
   </div>
   <div class="form-group">
     <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>
-    <label for="formGroupExampleInput">Amount to add:</label>
+    <label>Amount to add:</label>
     <?php else : ?>
-    <label for="formGroupExampleInput">Amount to withdraw:</label>
+    <label>Amount to withdraw:</label>
     <?php endif; ?>
     <input type="number" class="form-control">
   </div>
@@ -31,10 +34,12 @@ require_once './accFile.php';
       <input type="text" readonly class="form-control-plaintext" value="<?= $accBalance ?> $">
     </div>
   </div>
-  <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>
-  <button type=" submit" class="btn btn-primary">Add money</button>
-  <?php else : ?>
-  <button type="submit" class="btn btn-primary">Withdraw</button>
-  <?php endif; ?>
-  <a href='./index.php' class="btn btn-secondary">Back</a>
+  <form action="" method="post">
+    <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>
+    <button type=" submit" class="btn btn-primary" name='addMoney'>Add money</button>
+    <?php else : ?>
+    <button type="submit" class="btn btn-primary" name='wdrMoney'>Withdraw</button>
+    <?php endif; ?>
+    <a href='./index.php' class="btn btn-secondary">Back</a>
+  </form>
 </form>
