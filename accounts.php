@@ -4,6 +4,7 @@
   if(file_exists($accountFile)){
     $accounts = file_get_contents($accountFile);
     $accUsers = json_decode($accounts,true);
+    _d($accUsers);
   }
 
 ?>
@@ -20,22 +21,27 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($accUsers as $ind => $data) : ?>
+    <?php foreach ($accUsers as $data) : ?>
+    <?php foreach ($data as $id => $user) : ?>
     <tr>
-      <th scope="row"><?= $ind +1 ?></th>
-      <td><?= $data['firstname'] ?></td>
-      <td><?= $data['lastname'] ?></td>
-      <td><?= $data['accountid'] ?></td>
-      <td><?= $data['persid'] ?></td>
-      <td><?= $data['accbalance'] ?></td>
+      <th scope="row"><?= $id ?></th>
+      <td><?= $user['firstname'] ?></td>
+      <td><?= $user['lastname'] ?></td>
+      <td><?= $user['accountid'] ?></td>
+      <td><?= $user['persid'] ?></td>
+      <td><?= $user['accbalance'] ?></td>
       <td>
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <div class="btn-group" role="group">
           <a href='./add.php' class="btn btn-success">Add money</a>
           <a href='./withdraw.php' class="btn btn-primary">Withdraw money</a>
-          <button type="button" class="btn btn-danger">Delete account</button>
+          <form action="./deleteAcc.php" method="post" class="btn btn-danger">
+            <input type="hidden" name='userID' value='<?= $id ?>'>
+            <button type="submit" class="btn btn-danger">Delete account</button>
+          </form>
         </div>
       </td>
     </tr>
+    <?php endforeach; ?>
     <?php endforeach; ?>
   </tbody>
 
