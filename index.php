@@ -9,10 +9,12 @@
 <?php if ($_GET['delete'] === 'fail'): ?>
 <div class="alert alert-danger" role="alert">
   Could not delete this account because the bank balance is not empty!
+  <?php header('refresh: 3; url=./') ?>
 </div>
 <?php elseif ($_GET['delete'] === 'success') : ?>
 <div class="alert alert-success" role="alert">
   Account was succesfully deleted!
+  <?php header('refresh: 3; url=./') ?>
 </div>
 <?php endif; ?>
 

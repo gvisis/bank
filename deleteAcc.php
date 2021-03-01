@@ -8,11 +8,12 @@
 // Array search? 
 
 $userID = $_POST['userID'];
-if ($accounts['users'][$userID]['accbalance'] > 0) {
+_d($userID);
+if ($accounts[$userID]['accbalance'] > 0) {
   header("Location: index.php?delete=" . urlencode('fail'));
   exit;
 } else {
-  unset($accounts['users'][$userID]);
+  unset($accounts[$userID]);
   $accToString = json_encode($accounts);
   file_put_contents($accountFile, $accToString);
   header("Location: index.php?delete=" . urlencode('success'));

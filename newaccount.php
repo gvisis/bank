@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $accountsArr = json_decode($accountsJSON, true);
 
   // ikeliam visa post i iskoduota array
-  $accountsArr['users'][uniqid()] = $_POST;
+  $accountsArr[uniqid()] = $_POST;
 
   // uzkoduojam is naujo array
   $writeNewAccount= json_encode($accountsArr);
