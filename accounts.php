@@ -1,11 +1,4 @@
-<?php 
-  $accountFile = './accounts.json';
-  
-  if(file_exists($accountFile)){
-    $accounts = file_get_contents($accountFile);
-    $accUsers = json_decode($accounts,true);
-  }
-?>
+<?php require_once './accFile.php'?>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -28,8 +21,8 @@
       <td><?= $user['persid'] ?></td>
       <td><?= $user['accbalance'] ?></td>
       <td>
-        <a href='./add.php' class="btn btn-success btn-sm">Add money</a>
-        <a href='./withdraw.php' class="btn btn-primary btn-sm">Withdraw money</a>
+        <a href='./add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
+        <a href='./withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
         <form style="display: inline-block" action="./deleteAcc.php" method="post">
           <input type="hidden" name='userID' value='<?= $userID ?>'>
           <button type="submit" class="btn btn-danger btn-sm">Delete account</button>

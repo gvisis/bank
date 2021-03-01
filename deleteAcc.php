@@ -1,9 +1,5 @@
 <?php
-  $accountFile = 'accounts.json';
-  
-  if(file_exists($accountFile)){
-    $accounts = json_decode(file_get_contents($accountFile),true);
-  }
+require_once './accFile.php';
 
 // Array search? 
 
