@@ -3,10 +3,11 @@ require_once './accFile.php';
 $userID = $_POST['userID'];
 
 session_start();
+$fullName = $accUsers[$userID]['firstname'] . ' ' .$accUsers[$userID]['lastname'];
+
 if ($accUsers[$userID]['accbalance'] > 0) {
-  $fullName = $accUsers[$userID]['firstname'] . ' ' .$accUsers[$userID]['lastname'];
   $_SESSION['msg'] = "Could not delete $fullName account because the bank balance is not empty!";
-  $_SESSION['status_msg'] = 0;
+  $_SESSION['msg_status'] = 0;
   header("Location: index.php");
   exit;
 } else {

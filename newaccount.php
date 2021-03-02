@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <form action="" method="post">
   <div class="mb-3">
     <label class="form-label">First name</label>
