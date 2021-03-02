@@ -5,7 +5,7 @@
       <th scope="col">Database ID</th>
       <th scope="col">First name</th>
       <th scope="col">Last name</th>
-      <th scope="col">Account ID</th>
+      <th scope="col">Account Number</th>
       <th scope="col">Personal ID number</th>
       <th scope="col">Account balance</th>
       <th scope="col">Actions</th>
@@ -19,7 +19,7 @@
       <td><?= $user['lastname'] ?></td>
       <td><?= $user['accountid'] ?></td>
       <td><?= $user['persid'] ?></td>
-      <td><?= $user['accbalance'] ?></td>
+      <td>$ <?= $user['accbalance'] ?></td>
       <td>
         <a href='./add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
         <a href='./withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>

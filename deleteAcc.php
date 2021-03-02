@@ -1,18 +1,20 @@
 <?php
 require_once './accFile.php';
-
-// Array search? 
-
 $userID = $_POST['userID'];
 
+session_start();
 if ($accUsers[$userID]['accbalance'] > 0) {
-  header("Location: index.php?delete=" . urlencode('fail'));
+  $fullName = $accUsers[$userID]['firstname'] . ' ' .$accUsers[$userID]['lastname'];
+  $_SESSION['msg'] = "Could not delete $fullName account because the bank balance is not empty!";
+  $_SESSION['status_msg'] = 0;
+  header("Location: index.php");
   exit;
 } else {
+  $_SESSION['msg'] = "$fullName Account was succesfully deleted!";
+  $_SESSION['msg_status'] = 1;
   unset($accUsers[$userID]);
-  $accToString = json_encode($accUsers);
-  file_put_contents($accountFile, $accToString);
-  header("Location: index.php?delete=" . urlencode('success'));
+  file_put_contents($accountFile, json_encode($accUsers));
+  header("Location: index.php");
   exit;
 }
 ?>

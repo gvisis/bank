@@ -1,23 +1,14 @@
-<?php include_once __DIR__.'/header.php';?>
+<?php include_once __DIR__.'/header.php';
+session_start();?>
 
 
 <a href="./newaccount.php" class="btn btn-success">Create new account</a>
 <?php include_once __DIR__.'/accounts.php'; ?>
-
-<?php if (!empty($_GET['delete'])) : ?>
-
-<?php if ($_GET['delete'] === 'fail'): ?>
-<div class="alert alert-danger" role="alert">
-  Could not delete this account because the bank balance is not empty!
-  <?php header('refresh: 3; url=./') ?>
-</div>
-<?php elseif ($_GET['delete'] === 'success') : ?>
-<div class="alert alert-success" role="alert">
-  Account was succesfully deleted!
-  <?php header('refresh: 3; url=./') ?>
-</div>
-<?php endif; ?>
-
+<?php if (isset($_SESSION['msg'])) : ?>
+  <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
+    <?= _d($_SESSION['msg_status']) ?>
+    <?= $_SESSION['msg']; session_destroy();?>
+  </div>  
 <?php endif; ?>
 </body>
 
