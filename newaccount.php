@@ -5,13 +5,32 @@ require_once __DIR__.'/header.php';
 require __DIR__.'/accFile.php';
 session_start();
 
-$firstname = "";
-$lastname = "";
-$accNumb = "";
-$personalID = '';
-$accbalance = 0;
+// raidinis šalies kodas	LT
+// 2 kontroliniai skaitmenys (automatiškai priskiria bankas)	XX
+// 5 skaitmenų banko kodas	XXXXX
+// 11 skaitmenų senasis sąskaitos numeris	XXXXXXXXXXX
+
+function randIban() {
+  $countryCode = 'LT';
+  $controlDigits = 12;
+  $bankCode = null; // 5 digits
+  $bankAccNumb = null; // 11 digits
+
+  for ($i = 0; $i < 5; $i++){
+    $bankCode .= rand(0,9); 
+  }
+  for ($i = 0; $i < 11; $i++){
+    $bankAccNumb .= rand(0,9); 
+  }
+  return $countryCode . $controlDigits . $bankCode . $bankAccNumb;
+}
 
 $accountFile = __DIR__.'/accounts.json';
+$firstname = "";
+$lastname = "";
+$accNumb = $_SESSION['accNumb'] ?? '';
+$personalID = '';
+$accbalance = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
@@ -21,11 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['msg'] = 'User with the same personal ID already exists';
     $_SESSION['msg_status'] = 0;
     $firstname = $_POST['firstname'];
-    $lastname =$_POST['lastname'];
+    $lastname = $_POST['lastname'];
     $accNumb = $_POST['accNumb'];
+    
   } else {
     $_POST['accbalance'] = $accbalance;
-    
+
     // pasiimam is failo
     $accountsJSON= file_get_contents($accountFile);
     // atkodinam kaip array
@@ -44,12 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: ./index.php");
     exit;
   }
+} else {
+  $accNumb = randIban();
+  $_SESSION['accNumb'] = $accNumb;
 }
 ?>
 
 <?php if (isset($_SESSION['msg_status']) && $_SESSION['msg_status'] === 0) : ?>
   <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
-    <?= $_SESSION['msg']; session_destroy();?>
+    <?= $_SESSION['msg'];?>
   </div>  
 <?php endif; ?>
 
@@ -64,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
   <div class="mb-3">
     <label class="form-label">Account Number</label>
-    <input type="text" class="form-control" maxlength="35" name='accNumb' value="<?= $accNumb ?>">
+    <input type="text" readonly class="form-control" maxlength="35" name='accNumb' value="<?= $accNumb ?>">
   </div>
   <div class="mb-3">
     <label class="form-label">Personal ID number</label>

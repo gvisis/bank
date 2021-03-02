@@ -1,5 +1,6 @@
 <?php include_once __DIR__.'/header.php';
-session_start();?>
+session_start();
+_d($_SESSION); ?>
 
 
 <a href="./newaccount.php" class="btn btn-success">Create new account</a>
