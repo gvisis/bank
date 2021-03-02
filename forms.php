@@ -1,6 +1,5 @@
 <?php
 require_once './accFile.php';
-  session_start();
   $_SESSION['userID'] = $_GET['userID'];
   if(isset($_GET['userID'])) {
       $userFirstName = $accUsers[$_GET['userID']]['firstname'];

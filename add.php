@@ -9,6 +9,9 @@
         
         $accUsers[$userID]['accbalance'] += $_POST['mnyAmnt'];
         file_put_contents($accountFile,json_encode($accUsers));
+        _d($_SESSION);
+        session_destroy();
+        _d($_SESSION);
         header("Location: ./index.php");
         exit;
   }
