@@ -23,9 +23,9 @@ require_once './accFile.php';
   </div>
   <div class="form-group">
     <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>
-    <label>Amount to add:</label>
+      <label>Amount to add:</label>
     <?php else : ?>
-    <label>Amount to withdraw:</label>
+      <label>Amount to withdraw:</label>
     <?php endif; ?>
     <input type="number" class="form-control" name='mnyAmnt'>
   </div>
@@ -36,9 +36,9 @@ require_once './accFile.php';
     </div>
   </div>
     <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>
-    <button type="submit" class="btn btn-primary">Add money</button>
+      <button type="submit" class="btn btn-primary">Add money</button>
     <?php else : ?>
-    <button type="submit" class="btn btn-primary">Withdraw</button>
+      <button type="submit" class="btn btn-primary">Withdraw</button>
     <?php endif; ?>
     <a href='./index.php' class="btn btn-secondary">Back</a>
 </form>

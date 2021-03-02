@@ -1,4 +1,4 @@
-<?php require_once './accFile.php'?>
+<?php require_once './accFile.php'; ?>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -17,7 +17,7 @@
       <th scope="row"><?= $userID ?></th>
       <td><?= $user['firstname'] ?></td>
       <td><?= $user['lastname'] ?></td>
-      <td><?= $user['accountid'] ?></td>
+      <td><?= $user['accNumb'] ?></td>
       <td><?= $user['persid'] ?></td>
       <td>$ <?= $user['accbalance'] ?></td>
       <td>
