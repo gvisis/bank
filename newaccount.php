@@ -5,7 +5,7 @@ $lastname ='';
 $accountid = '';
 $personalid = '';
 $accbalance = 0;
-$accountFile = 'accounts.json';
+$accountFile = __DIR__.'/accounts.json';
 require_once __DIR__.'/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $accountsJSON= file_get_contents($accountFile);
   // atkodinam kaip array
   $accountsArr = json_decode($accountsJSON, true);
-
+  _d($accountsArr);
   // ikeliam visa post i iskoduota array
   $accountsArr[uniqid()] = $_POST;
 
