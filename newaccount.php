@@ -2,28 +2,9 @@
 
 <?php 
 require_once __DIR__.'/header.php';
-require __DIR__.'/accFile.php';
+require_once __DIR__.'/accFile.php';
+require_once __DIR__.'/functions.php';
 session_start();
-
-// raidinis šalies kodas	LT
-// 2 kontroliniai skaitmenys (automatiškai priskiria bankas)	XX
-// 5 skaitmenų banko kodas	XXXXX
-// 11 skaitmenų senasis sąskaitos numeris	XXXXXXXXXXX
-
-function randIban() {
-  $countryCode = 'LT';
-  $controlDigits = 12;
-  $bankCode = null; // 5 digits
-  $bankAccNumb = null; // 11 digits
-
-  for ($i = 0; $i < 5; $i++){
-    $bankCode .= rand(0,9); 
-  }
-  for ($i = 0; $i < 11; $i++){
-    $bankAccNumb .= rand(0,9); 
-  }
-  return $countryCode . $controlDigits . $bankCode . $bankAccNumb;
-}
 
 $accountFile = __DIR__.'/accounts.json';
 $firstname = "";
@@ -32,49 +13,26 @@ $accNumb = $_SESSION['accNumb'] ?? '';
 $personalID = '';
 $accbalance = 0;
 
+$errors = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
-  $personIdExist = array_search($_POST['persid'],array_column($accUsers, 'persid'));
-  
-  if ($personIdExist){
-    $_SESSION['msg'] = 'User with the same personal ID already exists';
-    $_SESSION['msg_status'] = 0;
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $accNumb = $_POST['accNumb'];
-    
-  } else {
-    $_POST['accbalance'] = $accbalance;
+  require_once __DIR__.'/validForm.php';
 
-    // pasiimam is failo
-    $accountsJSON= file_get_contents($accountFile);
-    // atkodinam kaip array
-    $accountsArr = json_decode($accountsJSON, true);
-    // ikeliam visa post i iskoduota array
-    $accountsArr[uniqid()] = $_POST;
-
-    // uzkoduojam is naujo array
-    $writeNewAccount= json_encode($accountsArr);
-    
-    $_SESSION['msg'] = $_POST['firstname'] . " " . $_POST['lastname'] ." was succesffuly added to the list!";
-    $_SESSION['msg_status'] = 1;
-    
-    // idedam vel i faila
-    file_put_contents($accountFile,$writeNewAccount);
-    header("Location: ./index.php");
-    exit;
-  }
 } else {
   $accNumb = randIban();
   $_SESSION['accNumb'] = $accNumb;
 }
 ?>
 
-<?php if (isset($_SESSION['msg_status']) && $_SESSION['msg_status'] === 0) : ?>
+<?php if(!empty($errors)) : ?>
   <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
-    <?= $_SESSION['msg'];?>
+    <?php foreach ($errors as $error) : ?>
+        <div><?= $error;?></div>
+    <?php endforeach ;?>
   </div>  
-<?php endif; ?>
+<?php endif ;?>
+
 
 <form action="" method="post">
   <div class="mb-3">

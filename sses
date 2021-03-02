@@ -1,0 +1,5 @@
+<?php if (isset($_SESSION['msg_status']) && $_SESSION['msg_status'] === 0) : ?>
+  <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
+    <?= $_SESSION['msg'];?>
+  </div>  
+<?php endif; ?>
