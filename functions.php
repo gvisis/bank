@@ -1,6 +1,5 @@
 <?php require_once './accFile.php'; ?>
 <?php
-
 //TODO: Needs checking of same IBANS
 
 function randIban() {
@@ -17,4 +16,23 @@ function randIban() {
   }
   return $countryCode . $controlDigits . $bankCode . $bankAccNumb;
 }
+
+function isPersonalIDValid($id, $accounts){
+  $persIDregex = "/^[3-6](\d{2})(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{4}$/";
+  $idInList = array_search($id,array_column($accounts, 'persid'));
+
+  if (!preg_match($persIDregex,$id)){
+    $_SESSION['perr_msg'] = 'Wrong personal ID format';
+    $_SESSION['msg_status'] = 0;
+    return false;
+  } 
+
+  if ($idInList){
+    $_SESSION['perr_msg'] = 'User with the same personal ID already exists';
+    $_SESSION['msg_status'] = 0;
+    return false;
+}
+  return true;
+}
 ?>
+

@@ -21,13 +21,13 @@ if (!$lastname) {
 }
 
 if ($personalID) {
-    if ($personIdExist){
-        $errors[] = 'User with the same personal ID already exists';
-        $_SESSION['msg_status'] = 0;
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
-        $accNumb = $_POST['accNumb'];
+    _d('checking id');
+    if (!isPersonalIDValid($personalID, $accUsers)){
+        $errors[] = $_SESSION['perr_msg'];
     }
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $accNumb = $_POST['accNumb'];
 } else {
     $errors[] = "Please enter your personal ID number";
 }
