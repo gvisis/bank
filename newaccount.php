@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <?php if(!empty($errors)) : ?>
-  <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
+  <div class="alert alert-danger" role="alert">
     <?php foreach ($errors as $error) : ?>
-        <div><?= $error;?></div>
+        <div><?= $error ?></div>
     <?php endforeach ;?>
   </div>  
 <?php endif ;?>
