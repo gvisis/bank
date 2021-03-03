@@ -10,10 +10,16 @@ $personIdExist = array_search($_POST['persid'],array_column($accUsers, 'persid')
 
 if (!$firstname) {
     $errors[] = "Please enter your first name";
+} elseif (strlen($firstname) < 3) {
+    $errors[] = "First name must be longer than 3 characters";
 }
+
 if (!$lastname) {
     $errors[] = "Please enter your last name";
+} elseif (strlen($lastname) < 3) {
+    $errors[] = "Last name must be longer than 3 characters";
 }
+
 if ($personalID) {
     if ($personIdExist){
         $errors[] = 'User with the same personal ID already exists';
