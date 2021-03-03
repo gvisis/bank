@@ -6,7 +6,7 @@ session_start();
 $fullName = $accUsers[$userID]['firstname'] . ' ' .$accUsers[$userID]['lastname'];
 
 if ($accUsers[$userID]['accbalance'] > 0) {
-  $_SESSION['msg'] = "Could not delete $fullName account because the bank balance is not empty!";
+  $_SESSION['msg'] = "Cannot delete $fullName account. Account balance is not empty!";
   $_SESSION['msg_status'] = 0;
   header("Location: index.php");
   exit;

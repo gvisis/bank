@@ -1,9 +1,8 @@
-<?php include_once __DIR__.'/header.php';
+<?php 
+include_once __DIR__.'/header.php';
 session_start();
-_d($_SESSION); ?>
+?>
 
-
-<a href="./newaccount.php" class="btn btn-success">Create new account</a>
 <?php include_once __DIR__.'/accounts.php'; ?>
 <?php if (isset($_SESSION['msg'])) : ?>
   <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
