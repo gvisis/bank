@@ -12,7 +12,6 @@ $lastname = "";
 $accNumb = $_SESSION['accNumb'] ?? '';
 $personalID = '';
 $accbalance = 0;
-
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

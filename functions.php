@@ -34,5 +34,19 @@ function isPersonalIDValid($id, $accounts){
 }
   return true;
 }
+
+function getNextId() : int {
+  if (!file_exists("indexes.json")) {
+      $index = json_encode(['id' => 1]);
+      file_put_contents('indexes.json', $index);
+  }
+  $index = file_get_contents("indexes.json");
+  $index = json_decode($index, true);
+  $id = (int) $index['id'];
+  $index['id'] = $id + 1;
+  $index = json_encode($index);
+  file_put_contents('indexes.json', $index);
+  return $id;
+}
 ?>
 

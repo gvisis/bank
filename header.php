@@ -24,8 +24,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="./index.php">Home</a>
           <a class="nav-link btn btn-outline-success btn-sm" href="./newaccount.php">Create new Account</a>
-          <a class="nav-link" href="#">Pricing</a>
-          <a class="nav-link disabled" href="#" tabindex="-1">Disabled</a>
+          <a class="nav-link disabled" href="#" tabindex="-1">Login</a>
         </div>
       </div>
     </div>

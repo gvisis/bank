@@ -1,4 +1,5 @@
-<?php require_once './accFile.php'; ?>
+<?php require_once './accFile.php'; 
+?>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -14,7 +15,7 @@
   <tbody>
     <?php foreach ($accUsers as $userID => $user) : ?>
     <tr>
-      <th scope="row"><?= $userID ?></th>
+      <th scope="row"><?= $user['id'] ?></th>
       <td><?= $user['firstname'] ?></td>
       <td><?= $user['lastname'] ?></td>
       <td><?= $user['accNumb'] ?></td>
@@ -23,8 +24,8 @@
       <td>
         <a href='./add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
         <a href='./withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
-        <form style="display: inline-block" action="./deleteAcc.php" method="post">
-          <input type="hidden" name='userID' value='<?= $userID ?>'>
+        <form style="display: inline-block" action="./deleteAcc.php?userID=<?= $userID ?>" method="post">
+          <!-- <input type="hidden" name='userID' value='<?= $userID ?>'> -->
           <button type="submit" class="btn btn-danger btn-sm">Delete account</button>
         </form>
         </div>

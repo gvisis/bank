@@ -21,7 +21,6 @@ if (!$lastname) {
 }
 
 if ($personalID) {
-    _d('checking id');
     if (!isPersonalIDValid($personalID, $accUsers)){
         $errors[] = $_SESSION['perr_msg'];
     }
@@ -34,13 +33,12 @@ if ($personalID) {
 
 if (empty($errors)) {
     $_POST['accbalance'] = $accbalance;
-
+    $_POST['id'] = getNextId();
     $accountsJSON= file_get_contents($accountFile);
     $accountsArr = json_decode($accountsJSON, true);
-    $accountsArr[uniqid()] = $_POST;
-    $writeNewAccount= json_encode($accountsArr);
+    $accountsArr[] = $_POST;
 
-    file_put_contents($accountFile,$writeNewAccount);
+    file_put_contents($accountFile,json_encode($accountsArr));
     
     $_SESSION['msg'] = $_POST['firstname'] . " " . $_POST['lastname'] ." was succesffuly added to the list!";
     $_SESSION['msg_status'] = 1;

@@ -1,7 +1,6 @@
 <?php
 require_once './accFile.php';
-$userID = $_POST['userID'];
-
+$userID = $_GET['userID'];
 session_start();
 $fullName = $accUsers[$userID]['firstname'] . ' ' .$accUsers[$userID]['lastname'];
 
