@@ -5,7 +5,6 @@ require_once __DIR__.'/header.php';
 require_once __DIR__.'/accFile.php';
 require_once __DIR__.'/functions.php';
 session_start();
-
 $accountFile = __DIR__.'/accounts.json';
 $firstname = "";
 $lastname = "";

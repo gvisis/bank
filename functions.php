@@ -22,17 +22,13 @@ function isPersonalIDValid($id, $accounts){
   $idInList = array_search($id,array_column($accounts, 'persid'));
 
   if (!preg_match($persIDregex,$id)){
-    $_SESSION['perr_msg'] = 'Wrong personal ID format';
-    $_SESSION['msg_status'] = 0;
-    return false;
+    return 'Wrong personal ID format';
   } 
 
   if ($idInList){
-    $_SESSION['perr_msg'] = 'User with the same personal ID already exists';
-    $_SESSION['msg_status'] = 0;
-    return false;
+    return 'User with the same personal ID already exists';
 }
-  return true;
+  return;
 }
 
 function getNextId() : int {
@@ -47,6 +43,20 @@ function getNextId() : int {
   $index = json_encode($index);
   file_put_contents('indexes.json', $index);
   return $id;
+}
+
+function isNameValid($name){
+
+  $nameCheckPreg = '/[^a-zA-Z]|\W+/m';
+
+  if (strlen($name) < 3 || strlen($name) > 40) {
+    return "Min 3 characters and max 40 characters in name fields";
+  } 
+
+  if (preg_match($nameCheckPreg, $name)) {
+    return 'No numbers or symbols allowed in the name/surname fields';
+  }
+  return;
 }
 ?>
 

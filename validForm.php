@@ -5,24 +5,25 @@ $lastname = $_POST['lastname'];
 $accNumb = $_POST['accNumb'];
 $personalID = $_POST['persid'];
 $accbalance = 0;
-
 $personIdExist = array_search($_POST['persid'],array_column($accUsers, 'persid'));
+
+//TODO: Reduce to one function for first and last name validation? 
 
 if (!$firstname) {
     $errors[] = "Please enter your first name";
-} elseif (strlen($firstname) < 3) {
-    $errors[] = "First name must be longer than 3 characters";
-}
+} elseif (isNameValid($firstname)) {
+    $errors[] = isNameValid($firstname);
+} 
 
 if (!$lastname) {
     $errors[] = "Please enter your last name";
-} elseif (strlen($lastname) < 3) {
-    $errors[] = "Last name must be longer than 3 characters";
-}
+} elseif (isNameValid($lastname)) {
+    $errors[] = isNameValid($lastname);
+} 
 
 if ($personalID) {
-    if (!isPersonalIDValid($personalID, $accUsers)){
-        $errors[] = $_SESSION['perr_msg'];
+    if (isPersonalIDValid($personalID, $accUsers)){
+        $errors[] = isPersonalIDValid($personalID, $accUsers);
     }
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
