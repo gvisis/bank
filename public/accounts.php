@@ -1,4 +1,6 @@
-<?php require_once './accFile.php'; 
+<?php 
+require_once __DIR__.'/../bootstrap.php';
+require_once DIR.'/accFile.php'; 
 ?>
 <table class="table table-hover">
   <thead>
@@ -22,10 +24,9 @@
       <td><?= $user['persid'] ?></td>
       <td>$ <?= $user['accbalance'] ?></td>
       <td>
-        <a href='./add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
-        <a href='./withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
-        <form style="display: inline-block" action="./deleteAcc.php?userID=<?= $userID ?>" method="post">
-          <!-- <input type="hidden" name='userID' value='<?= $userID ?>'> -->
+        <a href='<?= URL ?>/add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
+        <a href='<?= URL ?>/withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
+        <form style="display: inline-block" action="<?= URL ?>/deleteAcc.php?userID=<?= $userID ?>" method="post">
           <button type="submit" class="btn btn-danger btn-sm">Delete account</button>
         </form>
         </div>

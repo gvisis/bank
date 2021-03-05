@@ -1,9 +1,9 @@
 <?php 
-include_once __DIR__.'/header.php';
-session_start();
+require __DIR__.'/../bootstrap.php';
+include_once DIR.'header.php';
 ?>
 
-<?php include_once __DIR__.'/accounts.php'; ?>
+<?php include_once DIR.'/accounts.php'; ?>
 <?php if (isset($_SESSION['msg'])) : ?>
   <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
     <?= $_SESSION['msg']; session_destroy();?>

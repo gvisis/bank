@@ -1,11 +1,10 @@
 <!-- Forma resubmitinasi refreshinant -->
 
 <?php 
-require_once __DIR__.'/header.php';
-require_once __DIR__.'/accFile.php';
-require_once __DIR__.'/functions.php';
-session_start();
-$accountFile = __DIR__.'/accounts.json';
+require_once __DIR__.'/../bootstrap.php';
+require_once DIR.'/header.php';
+require_once DIR.'/accFile.php';
+$accountFile = DIR.'/../src/data/accounts.json';
 $firstname = "";
 $lastname = "";
 $accNumb = $_SESSION['accNumb'] ?? '';
@@ -15,7 +14,7 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
-  require_once __DIR__.'/validForm.php';
+  require_once DIR.'/validForm.php';
 
 } else {
   $accNumb = randIban();
@@ -51,5 +50,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-text">No more than 11 symbols</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-  <a href='./index.php' class="btn btn-secondary">Back</a>
+  <a href='<?= URL ?>' class="btn btn-secondary">Back</a>
 </form>

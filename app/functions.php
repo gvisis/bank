@@ -1,5 +1,4 @@
-<?php require_once './accFile.php'; ?>
-<?php
+<?php require_once 'accFile.php'; 
 //TODO: Needs checking of same IBANS
 
 function randIban() {
@@ -32,16 +31,16 @@ function isPersonalIDValid($id, $accounts){
 }
 
 function getNextId() : int {
-  if (!file_exists("indexes.json")) {
+  if (!file_exists(DIR."indexes.json")) {
       $index = json_encode(['id' => 1]);
-      file_put_contents('indexes.json', $index);
+      file_put_contents(DIR.'indexes.json', $index);
   }
-  $index = file_get_contents("indexes.json");
+  $index = file_get_contents(DIR."indexes.json");
   $index = json_decode($index, true);
   $id = (int) $index['id'];
   $index['id'] = $id + 1;
   $index = json_encode($index);
-  file_put_contents('indexes.json', $index);
+  file_put_contents(DIR.'indexes.json', $index);
   return $id;
 }
 

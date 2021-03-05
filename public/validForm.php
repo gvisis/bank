@@ -44,7 +44,7 @@ if (empty($errors)) {
     $_SESSION['msg'] = $_POST['firstname'] . " " . $_POST['lastname'] ." was succesffuly added to the list!";
     $_SESSION['msg_status'] = 1;
 
-    header("Location: ./index.php");
+    header("Location: ".URL);
     exit;
 }
 ?>

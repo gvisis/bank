@@ -1,12 +1,13 @@
 <?php
-require_once './accFile.php';
+require_once __DIR__.'/../bootstrap.php';
+require_once DIR.'/accFile.php';
   $_SESSION['userID'] = $_GET['userID'];
   if(isset($_GET['userID'])) {
       $userFirstName = $accUsers[$_GET['userID']]['firstname'];
       $userLastName = $accUsers[$_GET['userID']]['lastname'];
       $accBalance = $accUsers[$_GET['userID']]['accbalance'];
     } else {
-    header('Location: ./index.php');
+      header("Location: ".URL);
     exit;
   }
 ?>
@@ -40,5 +41,5 @@ require_once './accFile.php';
     <?php else : ?>
       <button type="submit" class="btn btn-primary">Withdraw</button>
     <?php endif; ?>
-    <a href='./index.php' class="btn btn-secondary">Back</a>
+    <a href='<?= URL ?>' class="btn btn-secondary">Back</a>
 </form>
