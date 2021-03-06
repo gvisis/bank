@@ -1,4 +1,4 @@
-<?php require_once 'accFile.php'; 
+<?php require_once DIR.'/accFile.php'; 
 //TODO: Needs checking of same IBANS
 
 function randIban() {
@@ -56,6 +56,34 @@ function isNameValid($name){
     return 'No numbers or symbols allowed in the name/surname fields';
   }
   return;
+}
+
+function createAccount($username,$pass, $name, $lastname) : bool{
+  if (!$username) {
+    $_SESSION['msg'][] = 'Please enter username';
+    return false;
+  }
+
+  if (!$pass) {
+    $_SESSION['msg'][] = 'Please enter password';
+    return false;
+  }
+  $newUser = [
+    'id' => getNextId(),
+    'username' => $username, 
+    'pass' => password_hash($pass,PASSWORD_DEFAULT),
+    'firstname' => $name,
+    'lastname' => $lastname
+  ];
+  if (!file_exists(DIR.'/../src/data/accounts.json')) {
+    file_put_contents(DIR.'/../src/data/accounts.json',json_encode($newUser));
+  } else {
+    $existingDB = file_get_contents(DIR.'/../src/data/accounts.json');
+    $existingDB = json_decode($existingDB,true);
+    $existingDB[] = $newUser;
+    file_put_contents(DIR.'/../src/data/accounts.json',json_encode($existingDB));
+    return true;
+  }
 }
 ?>
 
