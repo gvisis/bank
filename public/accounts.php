@@ -15,7 +15,7 @@ require_once DIR.'/accFile.php';
     </tr>
   </thead>
   <tbody>
-    <?php uasort($accUsers, 'sortByLastName'); ?>
+    <?php usort($accUsers, 'sortByLastName'); ?>
     <?php foreach ($accUsers as $userID => $user) : ?>
     <tr>
       <th scope="row"><?= $user['id'] ?></th>
@@ -27,7 +27,7 @@ require_once DIR.'/accFile.php';
       <td>
         <a href='<?= URL ?>/add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
         <a href='<?= URL ?>/withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
-        <form style="display: inline-block" action="<?= URL ?>/deleteAcc.php?userID=<?= $userID ?>" method="post">
+        <form style="display: inline-block" action="<?= URL ?>/deleteAcc.php?userID=<?= $user['id'] ?>" method="post">
           <button type="submit" class="btn btn-danger btn-sm">Delete account</button>
         </form>
         </div>

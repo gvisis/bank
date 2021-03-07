@@ -64,15 +64,7 @@ function sortByLastName($a, $b) {
 }
 
 function createAccount($username,$pass, $name, $lastname) : bool{
-  if (!$username) {
-    $_SESSION['msg'][] = 'Please enter username';
-    return false;
-  }
 
-  if (!$pass) {
-    $_SESSION['msg'][] = 'Please enter password';
-    return false;
-  }
   $newUser = [
     'id' => getNextId(),
     'username' => $username, 
