@@ -3,33 +3,37 @@
 require_once __DIR__.'/../bootstrap.php'; 
 require_once DIR.'/accFile.php'; 
 
+$firstname = $_POST['firstname'] ?? '';
+$lastname = $_POST['lastname'] ?? '';
+$username = $_POST['username'] ?? '';
+$pass = $_POST['pass'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
-  if (!$_POST['firstname']) {
+  if (!$firstname) {
     $errors[] = "Please enter your first name";
-} elseif (isNameValid($_POST['firstname'])) {
-    $errors[] = isNameValid($_POST['firstname']);
+} elseif (isNameValid($firstname)) {
+    $errors[] = isNameValid($firstname);
 } 
 
-if (!$_POST['lastname']) {
+if (!$lastname) {
     $errors[] = "Please enter your last name";
-} elseif (isNameValid($_POST['lastname'])) {
-    $errors[] = isNameValid($_POST['lastname']);
+} elseif (isNameValid($lastname)) {
+    $errors[] = isNameValid($lastname);
 }
-if (!$_POST['username']) {
+if (!$username) {
   $errors[] = 'Please enter username';
 }
 
-if (!$_POST['pass']) {
+if (!$pass) {
   $errors[] = 'Please enter password';
 }
 
- _d(empty($errors));
-  if (empty($errors)) {
-    createAccount($_POST['username'], $_POST['pass'], $_POST['firstname'], $_POST['lastname']);
-    header("Location: ".URL.'/../login/');
-    exit;
-  }
+if (empty($errors)) {
+  createAccount($username, $pass, $firstname, $lastname);
+  $_SESSION['msg'] = "Account created succesfully!";
+  header("Location: ".URL.'/../login/');
+  exit;
+}
 };
 
 ?>
@@ -38,6 +42,7 @@ if (!$_POST['pass']) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?= URL ?>/css/login.css" />
     <title>ManTBank</title>
   </head>
@@ -54,15 +59,15 @@ if (!$_POST['pass']) {
       <h1>Create new account</h1>
       <form action='' method='post'>
         <div class="form-control">
-          <input type="text" placeholder=" " name='username'/>
+          <input type="text" placeholder=" " name='username' value='<?= $username?>'/>
           <label>Username</label>
         </div>
         <div class="form-control">
-          <input type="text" placeholder=" " name='firstname'/>
+          <input type="text" placeholder=" " name='firstname' value='<?= $firstname?>'/>
           <label>First name</label>
         </div>
         <div class="form-control">
-          <input type="text" placeholder=" " name='lastname'/>
+          <input type="text" placeholder=" " name='lastname' value='<?= $lastname?>'/>
           <label>Last name</label>
         </div>
         <div class="form-control">

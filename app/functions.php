@@ -70,7 +70,10 @@ function createAccount($username,$pass, $name, $lastname) : bool{
     'username' => $username, 
     'pass' => password_hash($pass,PASSWORD_DEFAULT),
     'firstname' => $name,
-    'lastname' => $lastname
+    'lastname' => $lastname,
+    'accbalance' => 0,
+    'accNumb' => 0,
+    'persid' => '',
   ];
   if (!file_exists(DIR.'/../src/data/accounts.json')) {
     file_put_contents(DIR.'/../src/data/accounts.json',json_encode($newUser));

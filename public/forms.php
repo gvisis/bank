@@ -2,12 +2,17 @@
 require_once __DIR__.'/../bootstrap.php';
 require_once DIR.'/accFile.php';
   $_SESSION['userID'] = $_GET['userID'];
+
   if(isset($_GET['userID'])) {
-      $userFirstName = $accUsers[$_GET['userID']]['firstname'];
-      $userLastName = $accUsers[$_GET['userID']]['lastname'];
-      $accBalance = $accUsers[$_GET['userID']]['accbalance'];
-    } else {
-      header("Location: ".URL);
+    foreach ($accUsers as $key => $user) {
+      if ($user['id'] == $_GET['userID']) {
+        $userFirstName = $user['firstname'];
+        $userLastName = $user['lastname'];
+        $accBalance = $user['accbalance'];
+      }
+    }
+  } else {
+    header("Location: ".URL);
     exit;
   }
 ?>

@@ -25,8 +25,8 @@ require_once DIR.'/accFile.php';
       <td><?= $user['persid'] ?></td>
       <td>$ <?= $user['accbalance'] ?></td>
       <td>
-        <a href='<?= URL ?>/add.php?userID=<?= $userID ?>' class="btn btn-success btn-sm">Add money</a>
-        <a href='<?= URL ?>/withdraw.php?userID=<?= $userID ?>' class="btn btn-primary btn-sm">Withdraw money</a>
+        <a href='<?= URL ?>/add.php?userID=<?= $user['id'] ?>' class="btn btn-success btn-sm">Add money</a>
+        <a href='<?= URL ?>/withdraw.php?userID=<?= $user['id'] ?>' class="btn btn-primary btn-sm">Withdraw money</a>
         <form style="display: inline-block" action="<?= URL ?>/deleteAcc.php?userID=<?= $user['id'] ?>" method="post">
           <button type="submit" class="btn btn-danger btn-sm">Delete account</button>
         </form>

@@ -1,9 +1,9 @@
 <?php
 
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$accNumb = $_POST['accNumb'];
-$personalID = $_POST['persid'];
+$firstname = $_POST['firstname'] ?? '';
+$lastname = $_POST['lastname'] ?? '';
+$accNumb = $_POST['accNumb'] ?? '';
+$personalID = $_POST['persid'] ?? '';
 $accbalance = 0;
 $personIdExist = array_search($_POST['persid'],array_column($accUsers, 'persid'));
 
