@@ -15,6 +15,7 @@ require_once DIR.'/accFile.php';
     </tr>
   </thead>
   <tbody>
+    <?php uasort($accUsers, 'sortByLastName'); ?>
     <?php foreach ($accUsers as $userID => $user) : ?>
     <tr>
       <th scope="row"><?= $user['id'] ?></th>

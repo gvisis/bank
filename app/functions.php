@@ -58,6 +58,11 @@ function isNameValid($name){
   return;
 }
 
+function sortByLastName($a, $b) {
+  // _d($a['lastname']);
+  return $a['lastname'] <=> $b['lastname'];
+}
+
 function createAccount($username,$pass, $name, $lastname) : bool{
   if (!$username) {
     $_SESSION['msg'][] = 'Please enter username';

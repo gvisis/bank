@@ -1,4 +1,4 @@
-<?php require_once __DIR__.'/../../bootstrap.php'; ?>
+<?php require_once __DIR__.'/../bootstrap.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,9 +20,9 @@
           <label>Password</label>
         </div>
         <button class="btn">Login</button>
-        <p class="text">Don't have an account? <a href="<?= URL?>/login/register.php">Register</a></p>
+        <p class="text">Don't have an account? <a href="<?= URL?>/../login/register.php">Register</a></p>
       </form>
     </div>
-    <script src="<?= URL ?>../../app/js/script.js"></script>
+    <script src="<?= URL ?>/../app/js/script.js"></script>
   </body>
 </html>

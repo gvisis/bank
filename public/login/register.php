@@ -1,10 +1,10 @@
 <?php 
 
-require_once __DIR__.'/../../bootstrap.php'; 
-require_once __DIR__.'/../accFile.php'; 
+require_once __DIR__.'/../bootstrap.php'; 
+require_once DIR.'/accFile.php'; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (createAccount($_POST['username'], $_POST['pass'], $_POST['firstname'], $_POST['lastname'])) {
-        header("Location: ".URL."/login/");
+        header("Location: ".URL.'/../login/');
         exit;
     };
     
@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label>Password</label>
         </div>
         <button class="btn">Create Account</button>
-        <a href='../login' class="btn">Back</a>
+        <a href='<?= URL ?>/../login' class="btn">Back</a>
         <p class="text">Forgot <a href="#">password?</a></p>
       </form>
     </div>
-    <script src="<?= URL ?>../../app/js/script.js"></script>
+    <script src="<?= URL ?>/../app/js/script.js"></script>
   </body>
 </html>
