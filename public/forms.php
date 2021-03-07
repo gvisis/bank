@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__.'/../bootstrap.php';
 require_once DIR.'/accFile.php';
-  $_SESSION['userID'] = $_GET['userID'];
 checkIfLoggedIn();
-  if(isset($_GET['userID']) && $_SESSION['login'] === 1) {
+
+if (isset($_GET['userID']) && $_SESSION['login'] === 1) {
     foreach ($accUsers as $key => $user) {
       if ($user['id'] == $_GET['userID']) {
         $userFirstName = $user['firstname'];
@@ -17,8 +17,8 @@ checkIfLoggedIn();
   }
 ?>
 
-<h1>Sveiki, <?= $userFirstName . ' ' . $userLastName ?>!</h1>
-<form action="?userID=<?= $_GET['userID']?>" method="post">
+<h1>Account: <?= $userFirstName . ' ' . $userLastName ?>!</h1>
+<form action="?userID=<?= $_GET['userID'] ?>" method="post">
   <div class="form-group">
     <label>First name</label>
     <input type="text" readonly class="form-control" placeholder="<?= $userFirstName ?>">
