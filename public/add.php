@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($user['id'] == $_SESSION['userID']) {
           $user['accbalance'] += $_POST['mnyAmnt'];
           file_put_contents($accountFile,json_encode($accUsers));
-          session_destroy();
+          unset($_SESSION['userID']);;
           header("Location: ".URL);
           exit;
       }

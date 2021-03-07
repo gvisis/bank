@@ -1,4 +1,5 @@
 <?php require_once __DIR__.'/../bootstrap.php';
+checkIfLoggedIn();
 require_once DIR.'/accFile.php';
 require_once DIR.'/header.php';
 require_once DIR."/forms.php";
@@ -12,12 +13,12 @@ require_once DIR."/forms.php";
         if ($user['accbalance'] <= 0) {
             $user['accbalance'] = 0;
             file_put_contents($accountFile,json_encode($accUsers));
-            session_destroy();
+            unset($_SESSION['suerID']);
             header("Location: ".URL);
             die;
         }
         file_put_contents($accountFile,json_encode($accUsers));
-        session_destroy();
+        unset($_SESSION['userID']);
         header("Location: ".URL);
         exit;
       }

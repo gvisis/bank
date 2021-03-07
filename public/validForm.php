@@ -1,5 +1,6 @@
 <?php
-
+require_once __DIR__.'/../bootstrap.php';
+checkIfLoggedIn();
 $firstname = ucfirst($_POST['firstname']) ?? '';
 $lastname = ucfirst($_POST['lastname']) ?? '';
 $accNumb = $_POST['accNumb'] ?? '';

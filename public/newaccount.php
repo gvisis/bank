@@ -2,6 +2,7 @@
 
 <?php 
 require_once __DIR__.'/../bootstrap.php';
+checkIfLoggedIn();
 require_once DIR.'/header.php';
 require_once DIR.'/accFile.php';
 $accountFile = DIR.'/../src/data/accounts.json';
@@ -11,7 +12,6 @@ $accNumb = $_SESSION['accNumb'] ?? '';
 $personalID = '';
 $accbalance = 0;
 $errors = [];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   require_once DIR.'/validForm.php';

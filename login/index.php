@@ -1,4 +1,46 @@
-<?php require_once __DIR__.'/../bootstrap.php'; ?>
+<?php require_once __DIR__.'/../bootstrap.php'; 
+
+_d($_SESSION);
+if (isset($_GET['logout'])) {
+  session_destroy();
+  header("location: ".URL.'/../login/');
+  exit;
+}
+
+if (isset($_SESSION['login']) && $_SESSION['login'] === 1) {
+  _d($_SESSION);
+  header("location: ".URL);
+  exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (!file_exists(DIR.'/../login/superUsers.json')) {
+    $_SESSION['msg'] = "Wrong password or username bad";
+    $_SESSION['msg_status'] = 0;
+    header('Location: '.URL.'/../login/');
+    die;
+  }
+$username = $_POST['username'] ?? '';
+$pass = $_POST['pass'] ?? '';
+$superUserAccDatabase = file_get_contents(DIR.'/../login/superUsers.json');
+$superUserAccDatabase = json_decode($superUserAccDatabase, true);
+
+foreach ($superUserAccDatabase as $superUser) {
+  if ($superUser['username'] === $username) {
+    if (password_verify($pass,$superUser['pass'])) {
+          $_SESSION['login'] = 1;
+          $_SESSION['user'] = $username;
+          header("Location: ".URL);
+          exit;
+        }
+      }
+      $_SESSION['msg_status'] = 0;
+      $_SESSION['msg'] = "Wrong password or username good";
+      header('Location: '.URL.'/../login/');
+      die;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,10 +52,12 @@
   </head>
   <body>
   <?php if (isset($_SESSION['msg'])) : ?>
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-<?= ($_SESSION['msg_status']) == 0 ? 'danger' : 'success'?>" role="alert">
     <?= $_SESSION['msg']; session_destroy();?>
   </div>  
 <?php endif; ?>
+
+
     <div class="container">
       <h1>Login to see the accounts</h1>
       <form action='' method='post'>

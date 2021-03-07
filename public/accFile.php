@@ -1,4 +1,5 @@
 <?php 
+  require_once __DIR__.'/../bootstrap.php';
   $accountFile = __DIR__.'/../src/data/accounts.json';
   if(!file_exists($accountFile)){
     $accUsers = json_encode([]);

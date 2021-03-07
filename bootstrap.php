@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!session_start()) {
+    session_start();
+};
 
 define('URL', 'http://localhost/bit_php/homework/bank/public');
 define('DIR',__DIR__.'/public/');

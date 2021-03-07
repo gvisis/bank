@@ -1,6 +1,10 @@
 <?php 
 
 require_once __DIR__.'/../bootstrap.php'; 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+  header("Location: ".URL.'/../login/');
+  exit;
+}
 require_once DIR.'/accFile.php'; 
 
 $firstname = $_POST['firstname'] ?? '';
@@ -31,6 +35,7 @@ if (!$pass) {
 if (empty($errors)) {
   createAccount($username, $pass, ucfirst($firstname), ucfirst($lastname));
   $_SESSION['msg'] = "Account created succesfully!";
+  $_SESSION['msg_status'] = 1;
   header("Location: ".URL.'/../login/');
   exit;
 }
@@ -42,7 +47,6 @@ if (empty($errors)) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?= URL ?>/css/login.css" />
     <title>ManTBank</title>
   </head>
@@ -53,7 +57,7 @@ if (empty($errors)) {
         <div><?= $error ?></div>
     <?php endforeach ;?>
   </div>  
-<?php session_destroy() ;?>
+<?php unset($_SESSION['msg']); ;?>
 <?php endif ;?>
     <div class="container">
       <h1>Create new account</h1>

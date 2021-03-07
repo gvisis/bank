@@ -2,8 +2,8 @@
 require_once __DIR__.'/../bootstrap.php';
 require_once DIR.'/accFile.php';
   $_SESSION['userID'] = $_GET['userID'];
-
-  if(isset($_GET['userID'])) {
+checkIfLoggedIn();
+  if(isset($_GET['userID']) && $_SESSION['login'] === 1) {
     foreach ($accUsers as $key => $user) {
       if ($user['id'] == $_GET['userID']) {
         $userFirstName = $user['firstname'];

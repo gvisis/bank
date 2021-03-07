@@ -1,3 +1,4 @@
+<?php require_once __DIR__.'/../bootstrap.php'; checkIfLoggedIn(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="<?= URL ?>">Home</a>
           <a class="nav-link btn btn-outline-success btn-sm" href="<?= URL ?>/newaccount.php">Create new Account</a>
-          <a class="nav-link disabled" href="#" tabindex="-1">Login</a>
+            <a href="<?= URL.'/../login/index.php?logout'?>" class="nav-link btn btn-outline-info btn-sm" href="#">Logout</a>
         </div>
       </div>
     </div>

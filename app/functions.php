@@ -72,12 +72,19 @@ function createAccount($username,$pass, $name, $lastname){
     'lastname' => $lastname,
   ];
   if (!file_exists(DIR.'/../login/superUsers.json')) {
-    file_put_contents(DIR.'/../login/superUsers.json',json_encode($newSuperUser));
+    $superUserDB[] = $newSuperUser;
+    file_put_contents(DIR.'/../login/superUsers.json',json_encode($superUserDB));
   } else {
     $superUserDB = file_get_contents(DIR.'/../login/superUsers.json');
     $superUserDB = json_decode($superUserDB,true);
     $superUserDB[] = $newSuperUser;
     file_put_contents(DIR.'/../login/superUsers.json',json_encode($superUserDB));
+  }
+}
+function checkIfLoggedIn() {
+  if (!isset($_SESSION['login']) && $_SESSION['login'] !== 1){
+    header("Location: ".URL.'/../login/');
+    die;
   }
 }
 ?>

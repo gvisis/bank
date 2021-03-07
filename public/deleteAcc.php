@@ -1,11 +1,7 @@
 <?php
 require_once __DIR__.'/../bootstrap.php';
 require_once DIR.'/accFile.php';
-if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-  header("Location: ".URL);
-  exit;
-}
-
+checkIfLoggedIn();
 $userID = (int) $_GET['userID'];
 
 foreach ($accUsers as $key => $user) {
