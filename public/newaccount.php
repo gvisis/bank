@@ -34,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form action="" method="post">
   <div class="mb-3">
     <label class="form-label">First name</label>
-    <input type="text" class="form-control" name='firstname' value="<?= $firstname ?>">
+    <input type="text" class="form-control" name='firstname' value="<?= ucfirst($firstname) ?>">
   </div>
   <div class="mb-3">
     <label class="form-label">Last name</label>
-    <input type="text" class="form-control" name='lastname' value="<?= $lastname ?>">
+    <input type="text" class="form-control" name='lastname' value="<?= ucfirst($lastname) ?>">
   </div>
   <div class="mb-3">
     <label class="form-label">Account Number</label>

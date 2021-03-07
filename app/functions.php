@@ -4,12 +4,12 @@
 function randIban() {
   $countryCode = 'LT';
   $controlDigits = 12;
-  $bankCode = null; // 5 digits
+  $bankCode = 66666; // 5 digits
   $bankAccNumb = null; // 11 digits
 
-  for ($i = 0; $i < 5; $i++){
-    $bankCode .= rand(0,9); 
-  }
+  // for ($i = 0; $i < 5; $i++){
+  //   $bankCode .= rand(0,9); 
+  // }
   for ($i = 0; $i < 11; $i++){
     $bankAccNumb .= rand(0,9); 
   }
@@ -59,30 +59,25 @@ function isNameValid($name){
 }
 
 function sortByLastName($a, $b) {
-  // _d($a['lastname']);
   return $a['lastname'] <=> $b['lastname'];
 }
 
-function createAccount($username,$pass, $name, $lastname) : bool{
+function createAccount($username,$pass, $name, $lastname){
 
-  $newUser = [
+  $newSuperUser = [
     'id' => getNextId(),
     'username' => $username, 
     'pass' => password_hash($pass,PASSWORD_DEFAULT),
     'firstname' => $name,
     'lastname' => $lastname,
-    'accbalance' => 0,
-    'accNumb' => 0,
-    'persid' => '',
   ];
-  if (!file_exists(DIR.'/../src/data/accounts.json')) {
-    file_put_contents(DIR.'/../src/data/accounts.json',json_encode($newUser));
+  if (!file_exists(DIR.'/../login/superUsers.json')) {
+    file_put_contents(DIR.'/../login/superUsers.json',json_encode($newSuperUser));
   } else {
-    $existingDB = file_get_contents(DIR.'/../src/data/accounts.json');
-    $existingDB = json_decode($existingDB,true);
-    $existingDB[] = $newUser;
-    file_put_contents(DIR.'/../src/data/accounts.json',json_encode($existingDB));
-    return true;
+    $superUserDB = file_get_contents(DIR.'/../login/superUsers.json');
+    $superUserDB = json_decode($superUserDB,true);
+    $superUserDB[] = $newSuperUser;
+    file_put_contents(DIR.'/../login/superUsers.json',json_encode($superUserDB));
   }
 }
 ?>

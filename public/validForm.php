@@ -1,7 +1,7 @@
 <?php
 
-$firstname = $_POST['firstname'] ?? '';
-$lastname = $_POST['lastname'] ?? '';
+$firstname = ucfirst($_POST['firstname']) ?? '';
+$lastname = ucfirst($_POST['lastname']) ?? '';
 $accNumb = $_POST['accNumb'] ?? '';
 $personalID = $_POST['persid'] ?? '';
 $accbalance = 0;
@@ -25,8 +25,8 @@ if ($personalID) {
     if (isPersonalIDValid($personalID, $accUsers)){
         $errors[] = isPersonalIDValid($personalID, $accUsers);
     }
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = ucfirst($_POST['firstname']);
+    $lastname = ucfirst($_POST['lastname']);
     $accNumb = $_POST['accNumb'];
 } else {
     $errors[] = "Please enter your personal ID number";
@@ -35,13 +35,15 @@ if ($personalID) {
 if (empty($errors)) {
     $_POST['accbalance'] = $accbalance;
     $_POST['id'] = getNextId();
+    $_POST['lastname'] = ucfirst($_POST['lastname']); 
+    $_POST['firstname'] = ucfirst($_POST['lastname']);
     $accountsJSON= file_get_contents($accountFile);
     $accountsArr = json_decode($accountsJSON, true);
     $accountsArr[] = $_POST;
 
     file_put_contents($accountFile,json_encode($accountsArr));
     
-    $_SESSION['msg'] = $_POST['firstname'] . " " . $_POST['lastname'] ." was succesffuly added to the list!";
+    $_SESSION['msg'] = ucfirst($_POST['firstname']) . " " . ucfirst($_POST['lastname']) ." was succesffuly added to the list!";
     $_SESSION['msg_status'] = 1;
 
     header("Location: ".URL);

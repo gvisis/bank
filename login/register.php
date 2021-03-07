@@ -29,7 +29,7 @@ if (!$pass) {
 }
 
 if (empty($errors)) {
-  createAccount($username, $pass, $firstname, $lastname);
+  createAccount($username, $pass, ucfirst($firstname), ucfirst($lastname));
   $_SESSION['msg'] = "Account created succesfully!";
   header("Location: ".URL.'/../login/');
   exit;
