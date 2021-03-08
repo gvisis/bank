@@ -4,14 +4,14 @@ require_once DIR.'/accFile.php';
 checkIfLoggedIn();
 
 if (isset($_GET['userID']) && $_SESSION['login'] === 1) {
-    foreach ($accUsers as $key => $user) {
-      if ($user['id'] == $_GET['userID']) {
-        $userFirstName = $user['firstname'];
-        $userLastName = $user['lastname'];
-        $accBalance = $user['accbalance'];
-      }
+  foreach ($accUsers as $key => $user) {
+    if ($user['id'] == $_GET['userID']) {
+      $userFirstName = $user['firstname'];
+      $userLastName = $user['lastname'];
+      $accBalance = $user['accbalance'];
     }
-  } else {
+  }
+} else {
     header("Location: ".URL);
     exit;
   }
@@ -21,11 +21,11 @@ if (isset($_GET['userID']) && $_SESSION['login'] === 1) {
 <form action="?userID=<?= $_GET['userID'] ?>" method="post">
   <div class="form-group">
     <label>First name</label>
-    <input type="text" readonly class="form-control" placeholder="<?= $userFirstName ?>">
+    <input type="text" readonly class="form-control" value="<?= $userFirstName ?>">
   </div>
   <div class="form-group">
     <label>Last name</label>
-    <input type="text" readonly class="form-control" placeholder="<?= $userLastName ?>">
+    <input type="text" readonly class="form-control" value="<?= $userLastName ?>">
   </div>
   <div class="form-group">
     <?php if (basename($_SERVER['PHP_SELF']) != 'withdraw.php') : ?>

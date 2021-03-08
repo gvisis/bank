@@ -5,9 +5,9 @@ require_once DIR.'/header.php';
 require_once DIR."/forms.php";
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['mnyAmnt']) && isset($_SESSION['userID'])) {
+    if (!empty($_POST['mnyAmnt']) && isset($_GET['userID'])) {
       foreach ($accUsers as &$user) {
-        if ($user['id'] == $_SESSION['userID']) {  
+        if ($user['id'] == $_GET['userID']) {  
         $user['accbalance'] -= $_POST['mnyAmnt'];
 
         if ($user['accbalance'] <= 0) {

@@ -37,7 +37,7 @@ if (empty($errors)) {
     $_POST['accbalance'] = $accbalance;
     $_POST['id'] = getNextId();
     $_POST['lastname'] = ucfirst($_POST['lastname']); 
-    $_POST['firstname'] = ucfirst($_POST['lastname']);
+    $_POST['firstname'] = ucfirst($_POST['firstname']);
     $accountsJSON= file_get_contents($accountFile);
     $accountsArr = json_decode($accountsJSON, true);
     $accountsArr[] = $_POST;

@@ -25,7 +25,7 @@
         <div class="navbar-nav">
           <a class="nav-link active" href="<?= URL ?>">Home</a>
           <a class="nav-link btn btn-outline-success btn-sm" href="<?= URL ?>/newaccount.php">Create new Account</a>
-          <a class="nav-link btn btn-outline-info btn-sm" href="<?= URL ?>/update.php?edit">Edit account</a>
+          <a class="nav-link btn btn-outline-info btn-sm" href="<?= URL ?>/update.php">Edit account</a>
             <a href="<?= URL.'/../login/index.php?logout'?>" class="nav-link btn btn-outline-info btn-sm" href="#">Logout</a>
         </div>
       </div>
