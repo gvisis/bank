@@ -15,7 +15,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" style="background-color: #e3f2fd;">
     <div class=" container-fluid">
       <a class="navbar-brand" href="#">ManTBank</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
@@ -23,10 +23,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" href="<?= URL ?>">Home</a>
-          <a class="nav-link btn btn-outline-success btn-sm" href="<?= URL ?>/newaccount.php">Create new Account</a>
-          <a class="nav-link btn btn-outline-info btn-sm" href="<?= URL ?>/update.php">Edit account</a>
-            <a href="<?= URL.'/../login/index.php?logout'?>" class="nav-link btn btn-outline-info btn-sm" href="#">Logout</a>
+          <a class="nav-link" active href="<?= URL ?>">Home</a>
+          <a class="nav-link" href="<?= URL ?>/newaccount.php">Create new Account</a>
+          <a class="nav-link" href="<?= URL ?>/update.php?edit">Edit accounts</a>
+            <a href="<?= URL.'/../login/index.php?logout'?>" class="nav-link href="#">Logout</a>
         </div>
       </div>
     </div>
