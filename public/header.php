@@ -25,7 +25,7 @@
         <div class="navbar-nav">
           <a class="nav-link" active href="<?= URL ?>">Home</a>
           <a class="nav-link" href="<?= URL ?>/newaccount.php">Create new Account</a>
-          <a class="nav-link" href="<?= URL ?>/update.php?edit">Edit accounts</a>
+          <a class="nav-link disabled" href="<?= URL ?>/update.php?edit">Edit accounts</a>
             <a href="<?= URL.'/../login/index.php?logout'?>" class="nav-link href="#">Logout</a>
         </div>
       </div>

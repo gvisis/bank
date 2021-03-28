@@ -1,10 +1,6 @@
 <?php 
 
 require_once __DIR__.'/../bootstrap.php'; 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  header("Location: ".URL.'/../login/');
-  exit;
-}
 require_once DIR.'/accFile.php'; 
 
 $firstname = $_POST['firstname'] ?? '';
@@ -24,6 +20,7 @@ if (!$lastname) {
 } elseif (isNameValid($lastname)) {
     $errors[] = isNameValid($lastname);
 }
+
 if (!$username) {
   $errors[] = 'Please enter username';
 }

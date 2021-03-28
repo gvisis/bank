@@ -5,6 +5,7 @@ require_once DIR.'/accFile.php';
 <table class="table table-hover">
   <thead>
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Database ID</th>
       <th scope="col">First name</th>
       <th scope="col">Last name</th>
@@ -15,10 +16,13 @@ require_once DIR.'/accFile.php';
     </tr>
   </thead>
   <tbody>
-    <?php usort($accUsers, 'sortByLastName'); ?>
-    <?php foreach ($accUsers as $userID => $user) : ?>
+    <?php usort($accUsers, 'sortByLastName'); 
+    foreach ($accUsers as $key => $user) : 
+    static $count = 0; ?>
+
     <tr>
-      <th scope="row"><?= $user['id'] ?></th>
+      <th scope="row"><?= ++$count ?></th>
+      <td><?= $user['id'] ?></td>
       <td><?= $user['firstname'] ?></td>
       <td><?= $user['lastname'] ?></td>
       <td><?= $user['accNumb'] ?></td>

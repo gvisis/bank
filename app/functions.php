@@ -71,6 +71,7 @@ function createAccount($username,$pass, $name, $lastname){
     'firstname' => $name,
     'lastname' => $lastname,
   ];
+  
   if (!file_exists(DIR.'/../login/superUsers.json')) {
     $superUserDB[] = $newSuperUser;
     file_put_contents(DIR.'/../login/superUsers.json',json_encode($superUserDB));

@@ -1,6 +1,5 @@
 <?php require_once __DIR__.'/../bootstrap.php'; 
 
-_d($_SESSION);
 if (isset($_GET['logout'])) {
   session_destroy();
   header("location: ".URL.'/../login/');
@@ -8,7 +7,6 @@ if (isset($_GET['logout'])) {
 }
 
 if (isset($_SESSION['login']) && $_SESSION['login'] === 1) {
-  _d($_SESSION);
   header("location: ".URL);
   exit;
 }
@@ -25,20 +23,20 @@ $pass = $_POST['pass'] ?? '';
 $superUserAccDatabase = file_get_contents(DIR.'/../login/superUsers.json');
 $superUserAccDatabase = json_decode($superUserAccDatabase, true);
 
-foreach ($superUserAccDatabase as $superUser) {
-  if ($superUser['username'] === $username) {
-    if (password_verify($pass,$superUser['pass'])) {
-          $_SESSION['login'] = 1;
-          $_SESSION['user'] = $username;
-          header("Location: ".URL);
-          exit;
-        }
+  foreach ($superUserAccDatabase as $superUser) {
+    if ($superUser['username'] === $username) {
+     if (password_verify($pass,$superUser['pass'])) {
+            $_SESSION['login'] = 1;
+            $_SESSION['user'] = $username;
+            header("Location: ".URL);
+            exit;
       }
-      $_SESSION['msg_status'] = 0;
-      $_SESSION['msg'] = "Wrong password or username good";
-      header('Location: '.URL.'/../login/');
-      die;
     }
+  }
+  $_SESSION['msg_status'] = 0;
+  $_SESSION['msg'] = "Wrong password or username";
+  header('Location: '.URL.'/../login/');
+  die;
 }
 ?>
 <!DOCTYPE html>
@@ -46,7 +44,6 @@ foreach ($superUserAccDatabase as $superUser) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?= URL ?>/css/login.css" />
     <title>ManTBank</title>
   </head>
@@ -59,7 +56,7 @@ foreach ($superUserAccDatabase as $superUser) {
 
 
     <div class="container">
-      <h1>Login to see the accounts</h1>
+      <h1>Login to ManTBank</h1>
       <form action='' method='post'>
         <div class="form-control">
           <input type="text" placeholder=" " required name='username'/>

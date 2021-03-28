@@ -33,7 +33,7 @@ if (isset($_GET['userID']) && $_SESSION['login'] === 1) {
     <?php else : ?>
       <label>Amount to withdraw:</label>
     <?php endif; ?>
-    <input type="number" class="form-control" name='mnyAmnt'>
+    <input type="number"   class="form-control" name='mnyAmnt'>
   </div>
   <div class="form-group row">
     <label for="accountBalance" class="col-sm-2 col-form-label">Account balance</label>
